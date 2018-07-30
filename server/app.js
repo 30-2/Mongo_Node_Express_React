@@ -1,3 +1,6 @@
+// =======================
+// get the packages we need ============
+// =======================
 const express = require("express")
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -13,6 +16,10 @@ const router = express.Router()   // this is create router
 // add this line because intend to accept only json para and only return json
 router.use(bodyParser.urlencoded({ extended: false })); // for json return
 router.use(bodyParser.json());  // for json return 
+
+// =======================
+// configuration =========
+// =======================
 
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017/mernstack"  // this is a kind of mongodb config, mernstack is db name
 
@@ -31,7 +38,7 @@ let port = 5000 || process.env.PORT   // this is our server port, now can run as
 routes(router) 	// we can use route by like this
 
 app.use(cors())	 // this is let our app can use from every domain, 
-app.use(bodyParser.json())
+app.use(bodyParser.json())// use body parser so we can get info from POST and/or URL parameters
 
 app.use('/api', router)  // this is declare of routes by premix api...
 

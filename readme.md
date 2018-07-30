@@ -1,3 +1,4 @@
+https://www.youtube.com/watch?v=k_0ZzvHbNBQ&list=PLillGF-RfqbYRpji8t4SxUkMxfowG4Kqp&index=1
 Mongodb (Nosql database)
 Express (one of Nodejs most popular Framework)
 ReactJs (The most popular frontend javascript framework powered by facebook)
@@ -16,7 +17,7 @@ In command line, under your folder create server folder
 mongoose (MongoDb ORM package)
 express (Express Framework)
 cors (Cross Origin Allow package)
-body-parser (Request Parameter Management package)
+body-parser (Request Parameter Management package)let to get parameters from our POST requests
 
 - node_module and package-lock.json will create.
 
@@ -115,7 +116,7 @@ const cursor = db
   })
   .project({ status: 0, instock: 0 });
 
-  2# Create Article
+2# Create Article
   1. Create articel model
   2. Create route
   3. Declare route in route/index.js
@@ -129,3 +130,26 @@ const cursor = db
 	"feature_img": "",
 	"image": ""
 	}
+3# Create Authentication with Json Web Token
+ Install morgan and jsonwebtoken
+ - npm install morgan jsonwebtoken --save
+ morgan will log requests to the console so we can see what is happening
+ jsonwebtoken is how we create and verify our JSON Web Tokens
+ - npm install bcryptjs --save
+ bcryptjs password encryption
+ - create config.js file under project foler to store secret value
+ module.exports = {
+    'secret': 'ilovescotchyscotch',
+};
+- In Model\User.js Add new column password under email
+ password: String
+- modify User COntroller
+ * declare bcryptjs
+   const bcrypt = require('bcryptjs')
+ * encrypt password using bcrypt
+ bcrypt.hashSync(req.body.password, 8);
+ * protect password from field when diplay user
+ * create auth.js in route folder
+ * create AuthController
+ References from https://medium.freecodecamp.org/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52
+----------------------------------------------------------------------------
