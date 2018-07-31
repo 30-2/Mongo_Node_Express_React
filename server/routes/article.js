@@ -1,5 +1,6 @@
 // server/routes/article.js
-const articlecontroller = require('./../controllers/ArticleController.js')
+var JwtAuthMiddleware = require("./../Middleware/JwtAuthMiddleware")
+const articleController = require('./../controllers/articleController.js')
 // file upload
 //const multipart = require('connect-multiparty')
 //const multipartWare = multipart()
@@ -9,29 +10,29 @@ module.exports = (router) => {
      */
     router
         .route('/articles')
-        .get(articlecontroller.getAll)
+        .get(JwtAuthMiddleware,articleController.getAll)
     /**
      * add an article
      */
     router
         .route('/article')
-        .post(articlecontroller.addArticle)
+        .post(JwtAuthMiddleware,articleController.addArticle)
     /**
      * clap on an article
      */
     router
         .route('/article/clap')
-        .post(articlecontroller.clapArticle)
+        .post(JwtAuthMiddleware,articleController.clapArticle)
     /**
      * comment on an article
      */
     router
         .route('/article/comment')
-        .post(articlecontroller.commentArticle)
+        .post(JwtAuthMiddleware,articleController.commentArticle)
     /**
      * get a particlular article to view
      */
     router
         .route('/article/:id')
-        .get(articlecontroller.getArticle)
+        .get(JwtAuthMiddleware,articleController.getArticle)
 }
